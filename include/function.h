@@ -9,5 +9,6 @@
 #define FUNC_H
 
 char **read_rec(const char *filepath);
+void destroy(void **tab);
 
 #endif

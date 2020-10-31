@@ -6,6 +6,7 @@
 ##
 
 SRC	=	src/main.c					\
+		src/tools/destroy.c			\
 		src/tools/read_rec.c		\
 
 OBJ	=	$(SRC:.c=.o)

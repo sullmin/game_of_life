@@ -6,12 +6,13 @@
 ##
 
 SRC	=	src/main.c					\
+		src/tools/read_rec.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
 NAME	=	run_sim
 
-CFLAGS	+=	-Wall	-Wextra	-I./include
+CFLAGS	+=	-Wall	-Wextra	-I./include -g
 
 all:	$(NAME)
 

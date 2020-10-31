@@ -1,3 +1,5 @@
 *.a
 *.o
 snake
+vgcore.*
+run_sim

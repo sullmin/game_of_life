@@ -8,6 +8,7 @@
 #ifndef SIM_H
 #define SIM_H
 
+#include "function.h"
 #include "define.h"
 #include "libc.h"
 

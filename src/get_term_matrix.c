@@ -7,7 +7,7 @@
 
 #include "sim.h"
 
-static vector_t get_term_size(void)
+vector_t get_term_size(void)
 {
     struct winsize window;
 
@@ -15,21 +15,20 @@ static vector_t get_term_size(void)
     return (vector_t) {window.ws_col, window.ws_row + 1} ;
 }
 
-char **get_term_matrix(void)
+char **get_term_matrix(vector_t *size_term)
 {
     char **matrix = NULL;
-    vector_t size_term = get_term_size();
 
-    matrix = malloc(sizeof(char *) * (size_term.y + 1));
+    matrix = malloc(sizeof(char *) * (size_term->y + 1));
     if (!matrix)
         return NULL;
-    matrix[size_term.y] = NULL;
-    for (ssize_t i = 0; i < size_term.y; i++) {
-        matrix[i] = malloc(sizeof(char) * (size_term.x + 1));
+    matrix[size_term->y] = NULL;
+    for (ssize_t i = 0; i < size_term->y; i++) {
+        matrix[i] = malloc(sizeof(char) * (size_term->x + 1));
         if (!matrix[i])
             return NULL;
-        matrix[i][size_term.x] = '\0';
-        for (ssize_t x = 0; x < size_term.x; x++)
+        matrix[i][size_term->x] = '\0';
+        for (ssize_t x = 0; x < size_term->x; x++)
             matrix[i][x] = EMPTY;
     }
     return matrix;

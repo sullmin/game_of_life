@@ -13,6 +13,7 @@ void display_term_matrix(char **matrix)
         for (size_t x = 0; matrix[y][x]; x++) {
             fprintf(stdout, "%c", matrix[y][x]);
         }
-        fprintf(stdout, "\n");
+        if (matrix[y + 1])
+            fprintf(stdout, "c\n");
     }
 }

@@ -14,6 +14,6 @@ void display_term_matrix(char **matrix)
             fprintf(stdout, "%c", matrix[y][x]);
         }
         if (matrix[y + 1])
-            fprintf(stdout, "c\n");
+            fprintf(stdout, "\n");
     }
 }

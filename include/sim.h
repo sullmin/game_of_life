@@ -9,6 +9,7 @@
 #define SIM_H
 
 #include "function.h"
+#include "vector_t.h"
 #include "define.h"
 #include "libc.h"
 

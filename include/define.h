@@ -12,5 +12,6 @@
 #define EXIT_SUCCESS 0
 #define LIMIT_SIZE 100
 #define EXIT_ERROR 84
+#define EMPTY '.'
 
 #endif

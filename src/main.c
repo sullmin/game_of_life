@@ -7,9 +7,14 @@
 
 #include "sim.h"
 
-int main(int ac, char **av)
+int main(int ac, __attribute__((unused)) char **av)
 {
+    char **matrix = NULL;
+
     if (ac != 2)
         return EXIT_ERROR;
+    matrix = get_term_matrix();
+    display_term_matrix(matrix);
+    destroy((void **) matrix);
     return EXIT_SUCCESS;
 }

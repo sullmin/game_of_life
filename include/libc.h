@@ -8,6 +8,7 @@
 #ifndef LIBC_H
 #define LIBC_H
 
+#include <sys/ioctl.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>

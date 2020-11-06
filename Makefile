@@ -6,6 +6,8 @@
 ##
 
 SRC	=	src/main.c					\
+		src/get_term_matrix.c		\
+		src/display_term_matrix.c	\
 		src/tools/destroy.c			\
 		src/tools/read_rec.c		\
 

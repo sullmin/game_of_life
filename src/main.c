@@ -20,7 +20,7 @@ static bool main_loop(const char *filepath)
     if (!matrix)
         return false;
     clock_gettime(CLOCK_MONOTONIC_RAW, &fix_time);
-    while (true) {
+    while (!end_of_simulation(matrix)) {
         clock_gettime(CLOCK_MONOTONIC_RAW, &actual);
         loop = actual.tv_sec  - fix_time.tv_sec;
         actual.tv_sec = 0;

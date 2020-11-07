@@ -15,7 +15,7 @@
 #define EXIT_ERROR 84
 #define NEXT_ALIVE '@'
 #define NEXT_DEAD '$'
-#define EMPTY '.'
+#define EMPTY '^'
 #define ALIVE '#'
 
 #endif

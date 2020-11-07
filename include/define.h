@@ -9,6 +9,7 @@
 #define DEFINE_H
 
 #define RESIZE "Resize terminal please"
+#define CLEAR "\e[1;1H\e[2J"
 #define EXIT_SUCCESS 0
 #define LIMIT_SIZE 100
 #define EXIT_ERROR 84

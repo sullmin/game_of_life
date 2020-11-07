@@ -40,8 +40,7 @@ static bool main_loop(const char *filepath)
                     return false;
             }
             simulation(matrix);
-            fprintf(stdout, "\e[1;1H\e[2J");
-            fflush(stdout);
+            system("clear");
             display_term_matrix(matrix);
             //end
             if (loop == 1)
@@ -52,7 +51,7 @@ static bool main_loop(const char *filepath)
     return true;
 }
 
-int main(int ac, __attribute__((unused)) char **av)
+int main(int ac, char **av)
 {
     if (ac != 2)
         return EXIT_ERROR;

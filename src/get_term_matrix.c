@@ -12,7 +12,7 @@ vector_t get_term_size(void)
     struct winsize window;
 
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
-    return (vector_t) {window.ws_col, window.ws_row + 1} ;
+    return (vector_t) {window.ws_col, window.ws_row} ;
 }
 
 char **get_term_matrix(vector_t *size_term)

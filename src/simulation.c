@@ -13,6 +13,8 @@ static size_t count_neighbour_alive(char **matrix, vector_t *pos)
 
     for (ssize_t y = pos->y - 1; y <= pos->y + 1; y++) {
         for (ssize_t x = pos->x - 1; x <= pos->x + 1; x++) {
+            if (x < 0 || y < 0 || !matrix[y] || !matrix[y][x])
+                continue;
             if (matrix[y][x] == ALIVE || matrix[y][x] == NEXT_DEAD)
                 count += (x == pos->x && y == pos->y) ? 0 : 1;
         }
@@ -33,8 +35,8 @@ static void i_am_deus(char **matrix, vector_t pos)
 
 void simulation(char **matrix)
 {
-    for (size_t y = 1; matrix[y + 1]; y++) {
-        for (size_t x = 1; matrix[y][x + 1]; x++) {
+    for (size_t y = 0; matrix[y]; y++) {
+        for (size_t x = 0; matrix[y][x]; x++) {
             i_am_deus(matrix, (vector_t) {x, y});
         }
     }

@@ -33,7 +33,7 @@ static void i_am_deus(char **matrix, vector_t pos)
     }
 }
 
-void simulation(char **matrix)
+static void simulation(char **matrix)
 {
     for (size_t y = 0; matrix[y]; y++) {
         for (size_t x = 0; matrix[y][x]; x++) {
@@ -48,4 +48,26 @@ void simulation(char **matrix)
                 matrix[y][x] = EMPTY;
         }
     }
+}
+
+bool sim_manage(char ***matrix, vector_t *before)
+{
+    char **source = NULL;
+    vector_t act = get_term_size();
+
+    if (!(*matrix) || before->x != act.x || before->y != act.y) {
+        *before = act;
+        source = (*matrix);
+        (*matrix) = get_term_matrix(&act);
+        merge_array(source, (*matrix));
+        if (source) {
+            destroy((void **) source);
+            source = NULL;
+        }
+        if (!(*matrix))
+            return false;
+    }
+    display_term_matrix((*matrix));
+    simulation((*matrix));
+    return true;
 }

@@ -10,9 +10,7 @@
 static bool main_loop(const char *filepath)
 {
     char **matrix = read_rec(filepath);
-    char **source = NULL;
     vector_t before = {-1, -1};
-    vector_t act = {-1, -1};
     struct timespec fix_time = {0};
     struct timespec actual = {0};
     size_t loop = 0;
@@ -25,23 +23,8 @@ static bool main_loop(const char *filepath)
         loop = actual.tv_sec  - fix_time.tv_sec;
         actual.tv_sec = 0;
         while (loop > 0) {
-            //start
-            act = get_term_size();
-            if (!matrix || before.x != act.x || before.y != act.y) {
-                before = act;
-                source = matrix;
-                matrix = get_term_matrix(&act);
-                merge_array(source, matrix);
-                if (source) {
-                    destroy((void **) source);
-                    source = NULL;
-                }
-                if (!matrix)
-                    return false;
-            }
-            simulation(matrix);
-            display_term_matrix(matrix);
-            //end
+            if (!sim_manage(&matrix, &before))
+                return NULL;
             if (loop == 1)
                 clock_gettime(CLOCK_MONOTONIC_RAW, &fix_time);
             loop--;

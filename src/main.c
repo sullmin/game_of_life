@@ -40,7 +40,6 @@ static bool main_loop(const char *filepath)
                     return false;
             }
             simulation(matrix);
-            system("clear");
             display_term_matrix(matrix);
             //end
             if (loop == 1)

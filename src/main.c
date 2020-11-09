@@ -7,27 +7,35 @@
 
 #include "sim.h"
 
+static int get_nb_loop(struct timespec fix_time)
+{
+    struct timespec actual = {0};
+    size_t nb_sec = 0;
+    long double nb_nsec = 0;
+
+    clock_gettime(CLOCK_REALTIME, &actual);
+    nb_sec = actual.tv_sec  - fix_time.tv_sec;
+    nb_nsec = actual.tv_nsec  - fix_time.tv_nsec;
+    return (nb_sec + (nb_nsec / BILLION)) * FPS;
+}
+
 static bool main_loop(const char *filepath)
 {
     char **matrix = read_rec(filepath);
     vector_t before = {-1, -1};
     struct timespec fix_time = {0};
-    struct timespec actual = {0};
-    size_t loop = 0;
+    int loop = 0;
 
     if (!matrix)
         return false;
-    clock_gettime(CLOCK_MONOTONIC_RAW, &fix_time);
+    clock_gettime(CLOCK_REALTIME, &fix_time);
     while (!end_of_simulation(matrix)) {
-        clock_gettime(CLOCK_MONOTONIC_RAW, &actual);
-        loop = actual.tv_sec  - fix_time.tv_sec;
-        actual.tv_sec = 0;
-        while (loop > 0) {
+        loop = get_nb_loop(fix_time);
+        for (; loop > 0; loop--) {
             if (!sim_manage(&matrix, &before))
                 return NULL;
             if (loop == 1)
-                clock_gettime(CLOCK_MONOTONIC_RAW, &fix_time);
-            loop--;
+                clock_gettime(CLOCK_REALTIME, &fix_time);
         }
     }
     return true;

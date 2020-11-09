@@ -17,6 +17,7 @@ char **get_term_matrix(vector_t *size_term);
 void display_term_matrix(char **matrix);
 bool end_of_simulation(char **matrix);
 char **read_rec(const char *filepath);
+char **get_rand_matrix(void);
 vector_t get_term_size(void);
 void destroy(void **tab);
 

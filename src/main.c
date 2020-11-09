@@ -21,7 +21,7 @@ static int get_nb_loop(struct timespec fix_time)
 
 static bool main_loop(const char *filepath)
 {
-    char **matrix = read_rec(filepath);
+    char **matrix = (filepath) ? read_rec(filepath) : get_rand_matrix();
     vector_t before = {-1, -1};
     struct timespec fix_time = {0};
     int loop = 0;
@@ -43,9 +43,9 @@ static bool main_loop(const char *filepath)
 
 int main(int ac, char **av)
 {
-    if (ac != 2)
-        return EXIT_ERROR;
-    if (!main_loop(av[1]))
+    char *params = (ac == 2) ? av[1] : NULL;
+
+    if (!main_loop(params))
         return EXIT_ERROR;
     return EXIT_SUCCESS;
 }

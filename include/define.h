@@ -10,6 +10,7 @@
 
 #define RESIZE "Resize terminal please"
 #define BILLION 1000000000
+#define RAND_FILL_PROB 20
 #define EXIT_SUCCESS 0
 #define LIMIT_SIZE 100
 #define EXIT_ERROR 84

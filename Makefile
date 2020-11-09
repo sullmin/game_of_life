@@ -7,6 +7,7 @@
 
 SRC	=	src/main.c								\
 		src/matrix/merge_array.c				\
+		src/matrix/get_rand_matrix.c			\
 		src/matrix/get_term_matrix.c			\
 		src/matrix/display_term_matrix.c		\
 		src/tools/destroy.c						\

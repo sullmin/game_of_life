@@ -44,7 +44,9 @@ static bool main_loop(const char *filepath)
 int main(int ac, char **av)
 {
     char *params = (ac == 2) ? av[1] : NULL;
+    size_t seed = time(NULL);
 
+    srand(seed);
     if (!main_loop(params))
         return EXIT_ERROR;
     return EXIT_SUCCESS;

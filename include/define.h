@@ -8,7 +8,7 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-#define RESIZE "Resize terminal please"
+#define RANDOM_START "RANDOM_START"
 #define BILLION 1000000000
 #define RAND_FILL_PROB 20
 #define EXIT_SUCCESS 0

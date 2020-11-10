@@ -41,12 +41,25 @@ static bool main_loop(const char *filepath)
     return true;
 }
 
+static int help(const char *binary)
+{
+    fprintf(stdout, "HELP :\n");
+    fprintf(stdout, "%s filepath\n", binary);
+    fprintf(stdout, "if you want to execute GOF with specific start.\n");
+    fprintf(stdout, "else execute like this for random start :\n");
+    fprintf(stdout, "%s %s\n", binary, RANDOM_START);
+    return EXIT_ERROR;
+}
+
 int main(int ac, char **av)
 {
-    char *params = (ac == 2) ? av[1] : NULL;
+    char *params = NULL;
     size_t seed = time(NULL);
 
     srand(seed);
+    if (ac != 2)
+        return help(av[0]);
+    params = (strcmp(av[1], RANDOM_START) != 0) ? av[1] : NULL;
     if (!main_loop(params))
         return EXIT_ERROR;
     return EXIT_SUCCESS;

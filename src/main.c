@@ -22,16 +22,17 @@ static int get_nb_loop(struct timespec fix_time)
 static bool main_loop(const char *filepath)
 {
     char **matrix = (filepath) ? read_rec(filepath) : get_rand_matrix();
-    vector_t before = {-1, -1};
     struct timespec fix_time = {0};
+    vector_t before = {-1, -1};
+    size_t nb_iter = 0;
     int loop = 0;
 
     if (!matrix)
         return false;
     clock_gettime(CLOCK_REALTIME, &fix_time);
-    while (!end_of_simulation(matrix)) {
+    while (!end_of_simulation(matrix) && nb_iter < MAX_ITERATION) {
         loop = get_nb_loop(fix_time);
-        for (; loop > 0; loop--) {
+        for (; loop > 0; loop--, nb_iter++) {
             if (!sim_manage(&matrix, &before))
                 return NULL;
             if (loop == 1)

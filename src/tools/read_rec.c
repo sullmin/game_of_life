@@ -14,6 +14,7 @@ static bool rec_call_read(FILE *file, size_t pos, char ***load)
     ssize_t ret = getline(&line, &size, file);
 
     if (ret == -1 || pos > LIMIT_SIZE) {
+        free(line);
         *load = malloc(sizeof(char *) * (pos + 1));
         if (!(*load))
             return false;

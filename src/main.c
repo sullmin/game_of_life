@@ -39,6 +39,7 @@ static bool main_loop(const char *filepath)
                 clock_gettime(CLOCK_REALTIME, &fix_time);
         }
     }
+    destroy((void **) matrix);
     return true;
 }
 
